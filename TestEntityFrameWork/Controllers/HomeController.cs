@@ -211,11 +211,11 @@ namespace TestEntityFrameWork.Controllers
             {
 
                 //2. Initalize DB
-                NorthwindEntities ORM = new NorthwindEntities();
-
+                NorthwindDAL DAL = new NorthwindDAL();
+                DAL.SaveCustomer(NewCustomerRecord);
                 //3. Add the new record to the ORM
-                ORM.Customers.Add(NewCustomerRecord);
-                ORM.SaveChanges();
+                //ORM.Customers.Add(NewCustomerRecord);
+                //ORM.SaveChanges();
 
                 //4. Show the list of all customers
                 return RedirectToAction("ListCustomers");

@@ -52,12 +52,14 @@ namespace TestEntityFrameWork.Controllers
             return OrderList;
         }
 
-        /*public Customer SaveCustomer(Customer NewCustomerRecord)
+        public Customer SaveCustomer(Customer NewCustomerRecord)
         {
-           
+            ORM.Customers.Add(NewCustomerRecord);
+            ORM.SaveChanges();
+            return NewCustomerRecord;
 
 
-        }*/
+        }
 
         public bool DeleteCustomer(string CustomerID)
         {
