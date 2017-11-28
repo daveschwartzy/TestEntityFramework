@@ -14,6 +14,12 @@ namespace TestEntityFrameWork.Models
     
     public partial class Customer
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Customer()
+        {
+            this.Orders = new HashSet<Order>();
+        }
+    
         public string CustomerID { get; set; }
         public string CompanyName { get; set; }
         public string ContactName { get; set; }
@@ -25,5 +31,8 @@ namespace TestEntityFrameWork.Models
         public string Country { get; set; }
         public string Phone { get; set; }
         public string Fax { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Order> Orders { get; set; }
     }
 }

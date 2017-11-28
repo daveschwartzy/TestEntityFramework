@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewBag.Title = "GetOrders";
+}
+
+<h2>GetOrders</h2>
+<table class="table">
+    <tr><th>Order ID</th><th>Order Date</th></tr>
+    @foreach (var Order in ViewBag.ListOfOrders)
+    {
+        <tr>
+            <td>
+                @Order.OrderID
+            </td>
+            <td>
+                @Order.OrderDate
+            </td>
+        </tr>
+
+
+    }
+</table>

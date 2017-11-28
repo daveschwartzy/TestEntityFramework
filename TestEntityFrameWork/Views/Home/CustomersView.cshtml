@@ -4,26 +4,37 @@
 }
 
 <h2>CustomersView</h2>
-<form action="/Home/ListCustomersByCountry" method="get">
+
+<a href="/Home/NewCustomerForm">Add New Customer</a>
+
+@if (ViewBag.CountryList != null)
+{
+<form action="/Home/ListCustomersByCountry" method="get">   
     <h3>Country</h3>
     <select name="Country">
-        <option value="Germany">Germany</option>
-        <option value="France">France</option>
-        <option value="USA">USA</option>
+        @foreach (var Country in ViewBag.CountryList)
+        {
+            <option value="@Country">@Country</option>
+        }
     </select>
     <input type="submit" value="Search by Country" /><br />
 </form>
+}
 <form action="/Home/ListCustomersByCustomerID" method="get">
     <h3>Customer ID</h3>
     <input type="text" name="CustomerID"/>
     <input type="submit" value="Search by CustomerID" />
 </form>
+
 <br />
 <table class="table">
     <tr><th>Customer ID</th>
     <th>Company Name</th>
     <th>City</th>
     <th>Country</th>
+    <th>Update</th>
+    <th>Remove</th>
+    <th>Orders</th>
     
     </tr>
 
@@ -41,6 +52,17 @@
             </td>
             <td>
                 @CustomerRecord.Country
+            </td>
+            <td>
+                <a href="/Home/UpdateCustomer?CustomerID=@CustomerRecord.CustomerID">Update</a>
+            </td>
+            <td>
+                <a href="/Home/DeleteCustomer?CustomerID=@CustomerRecord.CustomerID" onclick="return confirm('Are you sure?')" class="btn btn-default btn-sm">
+                <span class="glyphicon glyphicon-trash"></span>Trash
+                </a>
+            </td>
+            <td>
+                <a href="/Home/GetOrders?CustomerID=@CustomerRecord.CustomerID">Orders</a>
             </td>
         </tr>
     }
